@@ -1,6 +1,7 @@
 package guru.qa;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
@@ -9,14 +10,19 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class PracticForm {
+
+    RegistrationPage registrationPage  = new RegistrationPage();
+
     @Test
     void practicForm() {
         open("https://demoqa.com/automation-practice-form");
-        //заполняеи поле имя
-        $("[id=firstName]").setValue("Vitoriia");
 
-        //заполняеи поле фамилия
-        $("[id=lastName]").setValue("Sun");
+        registrationPage.typeFirstName("Vitoriia");
+        registrationPage.typeLastName("Sun");
+
+
+
+
 
         // заполняем эл.почту
         $("#userEmail").setValue("IronLady@gmail.com");

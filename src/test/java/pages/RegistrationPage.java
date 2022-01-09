@@ -33,11 +33,13 @@ public class RegistrationPage {
 //    $(byText("Noida")).click();   //выбираем значение из списка город
 //    $("[id=submit]").click();   //кликаем на кнопку Submit
 
-    public void  typeFirstName(){
-        firstNameInput.setValue("Vitoriia");
+    public void  typeFirstName(String value){
+        firstNameInput.setValue(value);
     }
 
-    public void  typeFirstName(){
-        lastNameInput.setValue("Sun");
+    public void  typeLastName(String value){
+        lastNameInput.setValue(value);
     }
+
+
 }
