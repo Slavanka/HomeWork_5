@@ -1,25 +1,30 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
-import java.io.File;
-
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+
 
 public class RegistrationPage {
+    //locators & elements
+    SelenideElement
+            firstNameInput = $("firstName"),
+            lastNameInput = $("lastName"),
+            UserEmailInput = $("UserEmail"),
+            UserNumberInput = $("UserNumber"),
+            CheckboxGenderInput = $(byText("Other")),
+            CheckboxHobbiesInput = $(byText("Sports"));
 
-    SelenideElement firstNameInput = $("firstName"),
-                    lastNameInput = $("lastName");
+    public CalendarComponent calendarComponent = new CalendarComponent();
 
-//    $("[id=firstName]").setValue("Vitoriia");
-//    $("[id=lastName]").setValue("Sun");
-//    $("#userEmail").setValue("IronLady@gmail.com");
+
 //    $("[for=gender-radio-1]").click();
-//    $("[id=userNumber]").setValue("9302764785");
-//    $("#dateOfBirthInput").click();
-//    $(".react-datepicker__month-select").selectOptionByValue("4");
-//    $(".react-datepicker__year-select").selectOptionByValue("1993");
-//    $(".react-datepicker__day").click();
+
 //    <byText> $(byText("Sports")).scrollTo();
 //    $("#subjectsInput").click();
 //    $("#subjectsInput").setValue("d");
@@ -33,13 +38,43 @@ public class RegistrationPage {
 //    $(byText("Noida")).click();   //выбираем значение из списка город
 //    $("[id=submit]").click();   //кликаем на кнопку Submit
 
-    public void  typeFirstName(String value){
+
+    // actions
+
+    public void openPage() {
+        open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+    }
+
+    public RegistrationPage typeFirstName(String value) {
         firstNameInput.setValue(value);
+        return this;
     }
 
-    public void  typeLastName(String value){
+    public RegistrationPage typeLastName(String value) {
         lastNameInput.setValue(value);
+        return this;
     }
 
+
+    public RegistrationPage typeUserEmail(String value) {
+        UserEmailInput.setValue(value);
+        return this;
+    }
+
+
+    public RegistrationPage typeUserNumber(String number) {
+        UserNumberInput.setValue(number);
+        return this;
+    }
+
+    public RegistrationPage typeCheckboxGender(String value) {
+        CheckboxGenderInput.find(byText(value)).click();
+        return this;
+    }
+
+    public void typeCheckboxHobbies(String value) {
+        CheckboxHobbiesInput.find(byText(value)).click();
+    }
 
 }
